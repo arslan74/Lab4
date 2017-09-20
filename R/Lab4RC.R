@@ -96,5 +96,5 @@ linreg_mod$print()
 # linreg_mod$plot()
 # linreg_mod$resid()
 # linreg_mod$pred()
-linreg_mod$coef()
+# linreg_mod$coef()
 
