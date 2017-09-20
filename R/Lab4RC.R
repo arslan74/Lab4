@@ -49,16 +49,19 @@ linreg <- setRefClass("linreg",
                             cat(sep="\n")
 
                             namn<-rownames(Coefficients)
+                            cat(" ")
                             cat(namn)
+                            cat(" ")
                             cat(sep="\n")
+
                             cat(Coefficients)
                             
-                            return(
-                              list(
-                                Formula_call = formula,
-                                Regression_Coefficient=Coefficients
-                              )
-                            )
+                            # return(
+                            #   list(
+                            #     Formula_call = formula,
+                            #     Regression_Coefficient=Coefficients
+                            #   )
+                            # )
                             
                           },
                           plot = function(){
@@ -89,9 +92,9 @@ linreg <- setRefClass("linreg",
                         ))
 
 linreg_mod <- linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)
-# linreg_mod$print()
+linreg_mod$print()
 # linreg_mod$plot()
-linreg_mod$resid()
-linreg_mod$pred()
+# linreg_mod$resid()
+# linreg_mod$pred()
 linreg_mod$coef()
 
