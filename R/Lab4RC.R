@@ -48,14 +48,13 @@ linreg <- setRefClass("linreg",
                             cat("Coefficients:")
                             cat(sep="\n")
 
+                            my <- as.vector(Coefficients)
                             namn<-rownames(Coefficients)
                             cat(" ")
                             cat(namn)
                             cat(" ")
                             cat(sep="\n")
-
                             cat(Coefficients)
-                            
                             # return(
                             #   list(
                             #     Formula_call = formula,
