@@ -47,13 +47,30 @@ $$ Var(\beta) = \sigma^2/(X^T X)^1 $$
 The t-values for each coefficients:
 $$ t~\beta~ = \beta/\sqrt Var(hat \beta) $$
 
+## Ploting Data using Graph
+
+```{r}
+plot(Petal.Length~Species, data=iris)
+```
 
 ## Implementation of methods of class
 
 The package includes following functions implementation:
 1. print()
+  
+    The print() prints the formula and the coefficients of the estimated linear regression model.
 2. plot()
+ 
+    The plot() function uses ggplot2 to plot residuals vs. fitted values and the scale location.
 3. resid()
+  
+    The resid() function returns a vector of the residuals of the estmated linear regression model.
 4. pred()
+   
+    The pred() function returns a vector of the predicted values of the estimated linear regression model.
 5. coef()
+  
+    The coef() function returns the coefficients of the estimated linear regression model.
 6. summary()
+  
+    The summary() function returns the coefficients, standard errors, t-values and p-values of the estimated linear regression model.
