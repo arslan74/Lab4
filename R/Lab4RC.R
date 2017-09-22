@@ -48,20 +48,32 @@ linreg <- setRefClass("linreg",
                             cat("Coefficients:")
                             cat(sep="\n")
 
-                            my <- as.vector(Coefficients)
+                            
                             namn<-rownames(Coefficients)
+                            beta <- Coefficients
+                            names(beta)<-NULL
+                            
+                            beta<-round(beta,2)
+                            
+                            for(i in 2:length(beta)){
+                              beta[i]<-format(beta[i], width=max(nchar(beta[i]),nchar(namn[i])),justify = c("right"))
+                              namn[i]<-format(namn[i], width=max(nchar(beta[i]),nchar(namn[i])),justify = c("right"))
+                            }
+                            
+                            beta[1]<-format(beta[1], width=max(nchar(beta[1]),nchar(namn[1]),nchar("Coefficients")),justify = c("right"))
+                            namn[1]<-format(namn[1], width=max(nchar(beta[1]),nchar(namn[1]),nchar("Coefficients")),justify = c("right"))
+                            
+                            beta[1]<-paste(beta[1],"  ",sep="")
+                            namn[1]<-paste(namn[1],"  ",sep="")
+                            
+                            beta[2]<-paste(beta[2]," ",sep="")
+                            namn[2]<-paste(namn[2]," ",sep="")
+                            
                             cat(" ")
                             cat(namn)
                             cat(" ")
                             cat(sep="\n")
-                            cat(Coefficients)
-                            # return(
-                            #   list(
-                            #     Formula_call = formula,
-                            #     Regression_Coefficient=Coefficients
-                            #   )
-                            # )
-                            
+                            cat(beta)
                           },
                           plot = function(){
                             require(ggplot2)
