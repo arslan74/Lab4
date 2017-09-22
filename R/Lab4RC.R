@@ -54,10 +54,8 @@ linreg <- setRefClass("linreg",
                             DataName<<- deparse(substitute(data))
                             
                           },
-                          #' @title Print regression coefficients
-                          #' @name  print
-                          #' @description This function prints regression coefficients by using given formula and data in initialization.
                           print = function(){
+                            "This function prints regression coefficients by using given formula and data in initialization."
                             cat("Call:",sep="\n")
                             cat(paste("linreg(","formula = ",formula[2]," ",formula[1]," ",formula[3],", ","data = ",DataName,")",sep=""), sep="\n")
                             cat(sep="\n")
@@ -89,10 +87,8 @@ linreg <- setRefClass("linreg",
                             cat(beta)
                             
                           },
-                          #' @title Plot graphs
-                          #' @name  plot
-                          #' @description This function plots two graphs, such as Fitted values vs Residuals and Scale Location by using given formula and data in initialization.
                           plot = function(){
+                            "This function plots two graphs, such as Fitted values vs Residuals and Scale Location by using given formula and data in initialization."
                             require(ggplot2)
                             # library(ggplot2)
                             # library(png)
@@ -150,37 +146,26 @@ linreg <- setRefClass("linreg",
                             return(list(ResidualsVsFitted = a, ScaleLocation = b))
                             
                           },
-                          #' @title Residuals
-                          #' @name  resid
-                          #' @return Residuals
-                          #' @description This function returns residuals value.
                           resid = function(){
+                            "This function returns residuals value."
                             return(
                               Residuals
                             )
                           },
-                          #' @title Fitted Values
-                          #' @name  pred
-                          #' @return Fits
-                          #' @description This function returns fitted value.
                           pred = function(){
+                            "This function returns fitted value."
                             return(
                               Fits
                             )
                           },
-                          #' @title Regressions Coefficients
-                          #' @name  coef
-                          #' @return Coefficients
-                          #' @description This function returns regression coefficients
                           coef = function(){
+                            "This function returns regression coefficients"
                             return(
                               Coefficients
                             )
                           },
-                          #' @title Summary
-                          #' @name  summary
-                          #' @description This function prints the coefficients with their standard error, t-value and p-value.
                           summary = function(){
+                            "This function prints the coefficients with their standard error, t-value and p-value."
                             # (Intercept) -2.55 0.55 -4.44 ****
                             # Sepal.Width -1.32 0.15 -10.95  ****
                             # Sepal.Length 1.72 0.05 27.55  ****
