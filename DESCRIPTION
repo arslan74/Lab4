@@ -8,7 +8,8 @@ Maintainer: <fahadhameed199@gmail.com>
 Description: Lab 4 The Package includes functions Regressions coefficients. 
 License: GPL-3
 RoxygenNote: 6.0.1
+Imports: ggplot2
 Suggests: testthat,
     knitr,
-    rmarkdown,ggplot2
+    rmarkdown
 VignetteBuilder: knitr
