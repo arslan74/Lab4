@@ -1,4 +1,16 @@
-require(ggplot2)
+#' @title Linear Regression
+#' @description You can have Reference Class containing some calculations by giving formula and data.
+#' @field formula Formula
+#' @field data A data frame
+#' @examples
+#' data(iris)
+#' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$print()
+#' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$pred()
+#' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$summary()
+#' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$resid()
+#' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$coef()
+#' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$plot()
+#' @export linreg
 linreg <- setRefClass("linreg",
                         fields = list(formula = "formula", data = "data.frame",Coefficients = "numeric", Fits = "numeric",
                                       Residuals = "numeric", df = "numeric",
@@ -41,6 +53,9 @@ linreg <- setRefClass("linreg",
                             DataName<<- deparse(substitute(data))
                             
                           },
+                          #' @title Print regression coefficients
+                          #' @name  print
+                          #' @description This function prints regression coefficients by using given formula and data in initialization.
                           print = function(){
                             cat("Call:",sep="\n")
                             cat(paste("linreg(","formula = ",formula[2]," ",formula[1]," ",formula[3],", ","data = ",DataName,")",sep=""), sep="\n")
@@ -73,7 +88,11 @@ linreg <- setRefClass("linreg",
                             cat(beta)
                             
                           },
+                          #' @title Plot graphs
+                          #' @name  plot
+                          #' @description This function plots two graphs, such as Fitted values vs Residuals and Scale Location by using given formula and data in initialization.
                           plot = function(){
+                            require(ggplot2)
                             dataint <- data.frame(residual = Residuals, fitos = Fits)
                             a <- ggplot(data = dataint, aes(x = fitos, y = residual) ) +
                               geom_point() + labs(x = "Fitted values", y = "Residuals") +
@@ -92,21 +111,36 @@ linreg <- setRefClass("linreg",
                             return(list(ResidualsVsFitted = a, ScaleLocation = b))
                             
                           },
+                          #' @title Residuals
+                          #' @name  resid
+                          #' @return Residuals
+                          #' @description This function returns residuals value.
                           resid = function(){
                             return(
                               Residuals
                             )
                           },
+                          #' @title Fitted Values
+                          #' @name  pred
+                          #' @return Fits
+                          #' @description This function returns fitted value.
                           pred = function(){
                             return(
                               Fits
                             )
                           },
+                          #' @title Regressions Coefficients
+                          #' @name  coef
+                          #' @return Coefficients
+                          #' @description This function returns regression coefficients
                           coef = function(){
                             return(
                               Coefficients
                             )
                           },
+                          #' @title Summary
+                          #' @name  summary
+                          #' @description This function prints the coefficients with their standard error, t-value and p-value.
                           summary = function(){
                             # (Intercept) -2.55 0.55 -4.44 ****
                             # Sepal.Width -1.32 0.15 -10.95  ****
@@ -153,4 +187,4 @@ linreg_mod <- linreg$new(Petal.Length~Species, data=iris)
 # linreg_mod$resid()
 # linreg_mod$pred()
 # linreg_mod$coef()
-linreg_mod$summary()
+# linreg_mod$summary()
