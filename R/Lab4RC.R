@@ -182,8 +182,6 @@ linreg <- setRefClass("linreg",
                             }
                             cat("",sep="\n")
                             cat(paste("Residual standard error: ",round(sqrt(Var_residuals),5) ," on " ,df, " degrees of freedom",sep=""))
-                            
-
                           } 
                         ))
 
