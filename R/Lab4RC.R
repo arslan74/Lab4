@@ -204,10 +204,10 @@ linreg <- setRefClass("linreg",
                           } 
                         ))
 
-linreg_mod <- linreg$new(Petal.Length~Species, data=iris)
+# linreg_mod <- linreg$new(Petal.Length~Species, data=iris)
 
 # linreg_mod$print()
-  linreg_mod$plot()
+# linreg_mod$plot()
 # linreg_mod$resid()
 # linreg_mod$pred()
 # linreg_mod$coef()
