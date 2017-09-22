@@ -1,45 +1,45 @@
+require(ggplot2)
 linreg <- setRefClass("linreg",
-                        fields = list(formula = "formula", data = "data.frame",Coefficients = "matrix", Fits = "matrix",
-                                      Residual = "matrix", degreesFreedom = "numeric",
+                        fields = list(formula = "formula", data = "data.frame",Coefficients = "numeric", Fits = "numeric",
+                                      Residuals = "numeric", df = "numeric",
                                       rvariance = "matrix",
-                                      var_betas="matrix",tB="matrix",DataName="character"),
+                                      Var_residuals="numeric",tBetas="numeric",DataName="character",Std_betas="numeric",Pvalues="numeric"),
                         
                         methods = list(
                           initialize = function(formula = formula, data = data){
-                            mx <- model.matrix(formula, data=data)
-                            y <- all.vars(formula)[1]
                             
-                            ta <- t(mx)
+                            formula<<-formula
+                            data<<-data
+
+                            x<-model.matrix(formula,data)
+                            y<-all.vars(formula)[1]
+                            y<-as.matrix(data[,names(data)==y])
                             
-                            # Regressions coefficients
-                            betas <- solve((ta %*% mx)) %*% ta %*% data[,y[1]==names(data)]
-                            Coefficients <<- betas
+                            b_hat<-solve(t(x)%*%x)%*%t(x)%*%y
+                            y_fits<-x%*%b_hat
+                            e<-y-y_fits
+                            df1<-length(y)-ncol(x)
+                            var_e<-(t(e)%*%e)/df1
                             
-                            # The fitted values
-                            y_hat <- mx %*% betas
-                            Fits <<- y_hat
+                            var_b_hat<-as.numeric(var_e)*diag(solve((t(x)%*%x)))
+                            std_b_hat<-sqrt(var_b_hat)
+                            t_b_hat<-as.numeric(b_hat)/std_b_hat
+                            p_b_hat<-(1-(pt(abs(t_b_hat),df = df1)))*2
                             
-                            # The residuals
-                            e_hat <- data[,y[1]==names(data)] - y_hat
-                            Residual <<- e_hat
+                            b_hat_numeric<-as.numeric(b_hat)
+                            names(b_hat_numeric)<-rownames(b_hat)
                             
-                            # The degrees of freedom
-                            n <- nrow(mx)
-                            p <- ncol(mx)
-                            df <- n - p
-                            degreesFreedom <<- df
-                            
-                            # The residual variance
-                            rvariance <<- t(e_hat) %*% e_hat / df
-                            
-                            # The variance of the regression coefficients:
-                            right_side <- 1/(t(mx)%*%mx)
-                            var_betas <<- rvariance[1,1] * right_side
-                            
-                            # The t-values for each coefficient
-                            tB <<- betas / sqrt(diag(var_betas))
-                            formula <<- formula
+                            input_var<-as.character(match.call(expand.dots = FALSE))
+                            Coefficients<<-b_hat_numeric
+                            Fits<<-as.numeric(y_fits)
+                            Residuals<<-as.numeric(e)
+                            df<<-df1
+                            Var_residuals<<-as.numeric(var_e)
+                            Std_betas<<-std_b_hat
+                            tBetas<<-t_b_hat
+                            Pvalues<<-p_b_hat
                             DataName<<- deparse(substitute(data))
+                            
                           },
                           print = function(){
                             cat("Call:",sep="\n")
@@ -48,46 +48,53 @@ linreg <- setRefClass("linreg",
                             cat("Coefficients:")
                             cat(sep="\n")
 
-                            
-                            namn<-rownames(Coefficients)
-                            beta <- Coefficients
+                            beta<-Coefficients
+                            namn<-names(beta)
                             names(beta)<-NULL
-                            
-                            beta<-round(beta,2)
+                            beta<-round(beta,4)
                             
                             for(i in 2:length(beta)){
-                              beta[i]<-format(beta[i], width=max(nchar(beta[i]),nchar(namn[i])),justify = c("right"))
-                              namn[i]<-format(namn[i], width=max(nchar(beta[i]),nchar(namn[i])),justify = c("right"))
+                              beta[i]<-format(beta[i], width=max(nchar(beta[i]),nchar(namn[i])),justify = "right")
                             }
-                            
-                            beta[1]<-format(beta[1], width=max(nchar(beta[1]),nchar(namn[1]),nchar("Coefficients")),justify = c("right"))
-                            namn[1]<-format(namn[1], width=max(nchar(beta[1]),nchar(namn[1]),nchar("Coefficients")),justify = c("right"))
-                            
+
+                            beta[1]<-format(beta[1], width=max(nchar(beta[1]),nchar(namn[1]),nchar("Coefficients")),justify = "right")
+                            namn[1]<-format(namn[1], width=max(nchar(beta[1]),nchar(namn[1]),nchar("Coefficients")),justify = "right")
+
                             beta[1]<-paste(beta[1],"  ",sep="")
                             namn[1]<-paste(namn[1],"  ",sep="")
-                            
+
                             beta[2]<-paste(beta[2]," ",sep="")
                             namn[2]<-paste(namn[2]," ",sep="")
-                            
+
                             cat(" ")
                             cat(namn)
                             cat(" ")
                             cat(sep="\n")
                             cat(beta)
+                            
                           },
                           plot = function(){
-                            require(ggplot2)
-                            
-                            dataint <- data.frame(residual = Residual, fitos = Fits, std_residual = sqrt(abs(scale(Residual))))
-                            ggplot(data = dataint, aes(x = fitos, y = residual) ) +
+                            dataint <- data.frame(residual = Residuals, fitos = Fits)
+                            a <- ggplot(data = dataint, aes(x = fitos, y = residual) ) +
                               geom_point() + labs(x = "Fitted values", y = "Residuals") +
                               geom_smooth(method="loess", se = FALSE, color = "red") +
                               geom_hline(yintercept = 0) + theme_bw() + ggtitle("Residuals vs Fitted") +
                               theme(plot.title = element_text(hjust = 0.5))
+
+
+                            dataint2 <- data.frame(residual = sqrt(abs(Residuals)), fitos = Fits)
+                            b <- ggplot(data = dataint2, aes(x = fitos, y = residual) ) +
+                              geom_point() + labs(x = "Fitted values", y = expression(sqrt(abs("Standardized residuals")))) +
+                              geom_smooth(method="loess", se = FALSE, color = "red") +
+                              geom_hline(yintercept = 0) + theme_bw() + ggtitle("Scale Location") +
+                              theme(plot.title = element_text(hjust = 0.5))
+                            
+                            return(list(ResidualsVsFitted = a, ScaleLocation = b))
+                            
                           },
                           resid = function(){
                             return(
-                              Residual
+                              Residuals
                             )
                           },
                           pred = function(){
@@ -99,12 +106,26 @@ linreg <- setRefClass("linreg",
                             return(
                               Coefficients
                             )
+                          },
+                          summary = function(){
+                            # (Intercept) -2.55 0.55 -4.44 ****
+                            # Sepal.Width -1.32 0.15 -10.95  ****
+                            # Sepal.Length 1.72 0.05 27.55  ****
+                            # Residual standard error: 0.63 on 147 degrees of freedom
+                            
+                            beta<-Coefficients
+                            namn<-names(beta)
+                            names(beta)<-NULL
+                            beta<-round(beta,4)
+
                           } 
                         ))
 
 linreg_mod <- linreg$new(Petal.Length~Species, data=iris)
+
 linreg_mod$print()
 # linreg_mod$plot()
 # linreg_mod$resid()
 # linreg_mod$pred()
 # linreg_mod$coef()
+# linreg_mod$summary()
