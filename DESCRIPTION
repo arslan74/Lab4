@@ -1,14 +1,14 @@
-Package: FahadUgurcanLab4
+Package: Lab4ofDOOM
 Type: Package
-Title: FahadUgurcanLab4
+Title: Lab4
 Version: 1.0.0
 Date: 2017-09-11
-Author: UgurcanL Lacin and Fahad Hameed
-Maintainer: Any issues, contact: <fahadhameed199@gmail.com>
-Description: Lab 4 The Package includes functions Regressions coefficients. 
+Author: Albin Vasterlund, Eric Herwin
+Maintainer: Any issues, contact: <erihe068@student.liu.se>
+Description: Euclidian and Djukstra Algorithm
 License: GPL-3
 Depends: R (>= 2.10)
-URL: https://github.com/ugurcanlacin/Lab4
+URL: https://github.com/vasterlund/Lab3_Albin_Eric
 LazyData: true
 RoxygenNote: 6.0.1
 Suggests: testthat, ggplot2,

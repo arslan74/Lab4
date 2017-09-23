@@ -1,4 +1,4 @@
-#'@title Lab4: A package to make a linear regression 
+#'@title Lab4ofDOOM: A package to make a linear regression 
 #'
 #'@description This package help you to do a linear regression with "Reference Class" 
 #'
@@ -14,5 +14,5 @@
 #' 
 #' @name Lab4ofDOOM
 #' @docType package
-#' @author Fahad Ugurcan
+#' @author Albin Vasterlund and Eric Herwin
 NULL
