@@ -1,3 +1,4 @@
+
 export(linreg)
 exportClasses(linreg)
 importFrom("methods", "new")
