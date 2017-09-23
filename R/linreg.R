@@ -39,7 +39,6 @@ linreg<-setRefClass("linreg", fields = list(formula="formula",
                         formula<<-formula
                         data<<-data
                         
-                        ########### Beräkningar ########### 
                         x<-model.matrix(formula,data)
                         y<-all.vars(formula)[1]
                         y<-as.matrix(data[,names(data)==y])
@@ -61,7 +60,6 @@ linreg<-setRefClass("linreg", fields = list(formula="formula",
                         
                         
                         input_var<-as.character(match.call(expand.dots = FALSE))
-                        ########### Spara beräkningar ###########
                         Coefficients<<-b_hat_numeric
                         Fits<<-as.numeric(y_fits)
                         Residuals<<-as.numeric(e)
