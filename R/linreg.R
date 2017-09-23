@@ -89,59 +89,51 @@ linreg <- setRefClass("linreg",
                         },
                         plot = function(){
                           "This function plots two graphs, such as Fitted values vs Residuals and Scale Location by using given formula and data in initialization."
-                          require(ggplot2)
-                          # library(ggplot2)
-                          # library(png)
-                          # library(grid); 
-                          # library(RCurl)
-                          # library(png);
-                          # 
-                          # liu_blue <- "blue2"
-                          # linkoping_theme <- theme(plot.margin = unit(c(1.5,1,3,1), "cm"), 
-                          #                    legend.position="bottom", legend.title = element_blank(),
-                          #                    legend.key = element_blank(),
-                          #                    legend.text = element_text(color="blue", size="10"),
-                          #                    axis.text.y = element_text(color="blue", size="10"),
-                          #                    axis.title.x = element_text(color="blue", size="10", face="bold"),
-                          #                    panel.background = element_rect(fill="#DBFCFF"), 
-                          #                    panel.grid.major.x = element_blank(),
-                          #                    panel.grid.minor.x = element_blank(),
-                          #                    axis.title.y = element_text(color="blue", size="10", face="bold"),
-                          #                    axis.ticks.y = element_blank(),
-                          #                    axis.ticks.x = element_line(color = "#58585b", size = 0.3),
-                          #                    axis.line = element_line(color= "#58585b", size=0.1),
-                          #                    axis.text.x = element_text(color="blue", size="10"),
-                          #                    plot.title = element_text(color="blue", face="bold", size="14") 
-                          #                    )
-                          # 
-                          # myurl <- "https://upload.wikimedia.org/wikipedia/en/5/50/Link%C3%B6ping_University_Seal.png"
-                          # img <- readPNG(getURLContent(myurl))
-                          # g <- rasterGrob(img)
-                          
+                           
+                           require(ggplot2)
+                            
+                         linkoping_theme <- 
+                           theme(
+                            plot.margin = unit(c(1.2,1.2,1.2,1.2), "cm"),
+                            panel.background = element_rect(fill="#BCEDF0"),
+                            panel.grid.major.y = element_blank(),
+                            panel.grid.minor.y = element_blank(),
+                            panel.grid.major.x = element_blank(),
+                            panel.grid.minor.x = element_blank(),
+                            axis.line = element_line(color= "#58585b", size=1),
+                            axis.text.x = element_text(color="#0C0798", size="10"),
+                            axis.text.y = element_text(color="#0C0798", size="10"),
+                            axis.title.x = element_text(color="Black", size="12", face="bold.italic"),
+                            axis.title.y = element_text(color="Black", size="12", face="bold.italic"),
+                            axis.ticks.y = element_blank(),
+                            axis.ticks.x = element_line(color = "#9D9ADC", size = 0.3),
+                            plot.title = element_text(color="blue2", face="bold", size="14"),
+                            legend.position="bottom", legend.title = element_blank(),
+                            legend.text = element_text(color="Black", size="10")
+                         ) 
+                         
                           dataint <- data.frame(residual = Residuals, fitos = Fits)
                           a <- ggplot(data = dataint, aes(x = fitos, y = residual) ) +
                             geom_point() + labs(x = "Fitted values", y = "Residuals") +
                             geom_smooth(method="loess", se = FALSE, color = "red") +
                             geom_hline(yintercept = 0) + theme_bw() + ggtitle("Residuals vs Fitted") +
-                            theme(plot.title = element_text(hjust = 0.5),panel.background = element_rect(fill="#DBFCFF"))
-                          #   +annotation_custom(g, xmin=2.5, xmax=4.5, ymin=-Inf, ymax=Inf) +
+                            linkoping_theme 
+                            #annotation_custom(g, xmin=2.5, xmax=4.5, ymin=-Inf, ymax=Inf)    
+                            #theme(plot.title = element_text(hjust = 0.5),panel.background = element_rect(fill="#F70707")) +
+                            #  labs(title="Linkoping University" ) +
+                            #  theme(plot.margin=margin(15,20,15,5),
+                            #      plot.caption=element_text(colour="blue", hjust=0.5, size=14)) +
+                          
+                            dataint2 <- data.frame(residual = sqrt(abs(Residuals)), fitos = Fits)
+                            b <- ggplot(data = dataint2, aes(x = fitos, y = residual) ) +
+                              geom_point() + labs(x = "Fitted values", y = expression(sqrt(abs("Standardized residuals")))) +
+                              geom_smooth(method="loess", se = FALSE, color = "red") +
+                              geom_hline(yintercept = 0) + theme_bw() + ggtitle("Scale Location") +
+                              linkoping_theme 
+                          #   annotation_custom(g, xmin=2.5, xmax=4.5, ymin=-Inf, ymax=Inf) +
                           #   labs(caption="Linkoping University") +
                           #   theme(plot.margin=margin(15,20,15,5),
-                          #         plot.caption=element_text(colour="blue", hjust=0.5, size=14)) 
-                          # linkoping_theme
-                          
-                          
-                          dataint2 <- data.frame(residual = sqrt(abs(Residuals)), fitos = Fits)
-                          b <- ggplot(data = dataint2, aes(x = fitos, y = residual) ) +
-                            geom_point() + labs(x = "Fitted values", y = expression(sqrt(abs("Standardized residuals")))) +
-                            geom_smooth(method="loess", se = FALSE, color = "red") +
-                            geom_hline(yintercept = 0) + theme_bw() + ggtitle("Scale Location") +
-                            theme(plot.title = element_text(hjust = 0.5),panel.background = element_rect(fill="#DBFCFF"))
-                          #   +annotation_custom(g, xmin=2.5, xmax=4.5, ymin=-Inf, ymax=Inf) +
-                          #   labs(caption="Linkoping University") +
-                          #   theme(plot.margin=margin(15,20,15,5),
-                          #         plot.caption=element_text(colour="blue", hjust=0.5, size=14)) 
-                          # linkoping_theme
+                          #   plot.caption=element_text(colour="blue", hjust=0.5, size=14)) +
                           
                           return(list(ResidualsVsFitted = a, ScaleLocation = b))
                           
@@ -204,7 +196,7 @@ linreg <- setRefClass("linreg",
                         } 
                       ))
 
-# linreg_mod <- linreg$new(Petal.Length~Species, data=iris)
+ linreg_mod <- linreg$new(Petal.Length~Species, data=iris)
 
 # linreg_mod$print()
 # linreg_mod$plot()
