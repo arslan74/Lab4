@@ -55,7 +55,7 @@ linreg <- setRefClass("linreg",
                           
                         },
                         print = function(){
-                          "This function prints regression coefficients by using given formula and data in initialization."
+                          "Function Prints regression coefficients by using formula and data in initialization."
                           cat("Call:",sep="\n")
                           cat(paste("linreg(","formula = ",formula[2]," ",formula[1]," ",formula[3],", ","data = ",DataName,")",sep=""), sep="\n")
                           cat(sep="\n")
@@ -157,7 +157,7 @@ linreg <- setRefClass("linreg",
                           )
                         },
                         summary = function(){
-                          "This function prints the coefficients with their standard error, t-value and p-value."
+                          "This Function Prints the coefficients with their standard error, t-value and p-value."
                           # (Intercept) -2.55 0.55 -4.44 ****
                           # Sepal.Width -1.32 0.15 -10.95  ****
                           # Sepal.Length 1.72 0.05 27.55  ****
