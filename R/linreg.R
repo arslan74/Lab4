@@ -139,7 +139,7 @@ linreg <- setRefClass("linreg",
                           
                         },
                         resid = function(){
-                          "This function returns residuals value."
+                          "Residual function returns residuals value."
                           return(
                             Residuals
                           )
