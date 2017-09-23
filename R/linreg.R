@@ -123,7 +123,7 @@ linreg <- setRefClass("linreg",
                             geom_point() + labs(x = "Fitted values", y = "Residuals") +
                             geom_smooth(method="loess", se = FALSE, color = "red") +
                             geom_hline(yintercept = 0) + theme_bw() + ggtitle("Residuals vs Fitted") +
-                            theme(plot.title = element_text(hjust = 0.5))
+                            theme(plot.title = element_text(hjust = 0.5),panel.background = element_rect(fill="#DBFCFF"))
                           #   +annotation_custom(g, xmin=2.5, xmax=4.5, ymin=-Inf, ymax=Inf) +
                           #   labs(caption="Linkoping University") +
                           #   theme(plot.margin=margin(15,20,15,5),
@@ -136,7 +136,7 @@ linreg <- setRefClass("linreg",
                             geom_point() + labs(x = "Fitted values", y = expression(sqrt(abs("Standardized residuals")))) +
                             geom_smooth(method="loess", se = FALSE, color = "red") +
                             geom_hline(yintercept = 0) + theme_bw() + ggtitle("Scale Location") +
-                            theme(plot.title = element_text(hjust = 0.5))
+                            theme(plot.title = element_text(hjust = 0.5),panel.background = element_rect(fill="#DBFCFF"))
                           #   +annotation_custom(g, xmin=2.5, xmax=4.5, ymin=-Inf, ymax=Inf) +
                           #   labs(caption="Linkoping University") +
                           #   theme(plot.margin=margin(15,20,15,5),
