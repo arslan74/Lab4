@@ -26,7 +26,8 @@ Implementation of Lab 4 includes following tasks:
 
 ## linreg function Implementation
 
-
+Regrssions coefficients:
+$$\beta = (X^T X)^-1 X^Ty$$
 
 The Fitted values:
 $$\ \hat y = X \beta$$
