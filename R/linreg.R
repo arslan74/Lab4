@@ -2,6 +2,7 @@
 #' @description You can have Reference Class containing some calculations by giving formula and data.
 #' @field formula Formula
 #' @field data A data frame
+#' @import methods
 #' @examples
 #' data(iris)
 #' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$print()
