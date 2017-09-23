@@ -1,2 +1,4 @@
+export(linreg)
+exportClasses(linreg)
 exportPattern("^[[:alpha:]]+")
 importFrom("methods", "new")
