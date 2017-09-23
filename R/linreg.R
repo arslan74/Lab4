@@ -89,7 +89,7 @@ linreg <- setRefClass("linreg",
                         },
                         plot = function(){
                           "This function plots two graphs, such as Fitted values vs Residuals and Scale Location by using given formula and data in initialization."
-                          # require(ggplot2)
+                          require(ggplot2)
                           # library(ggplot2)
                           # library(png)
                           # library(grid);
@@ -114,9 +114,9 @@ linreg <- setRefClass("linreg",
                                              plot.title = element_text(color="blue", face="bold", size="14")
                                              )
 
-                          myurl <- "https://upload.wikimedia.org/wikipedia/en/5/50/Link%C3%B6ping_University_Seal.png"
-                          img <- readPNG(getURLContent(myurl))
-                          g <- rasterGrob(img)
+                          # myurl <- "https://upload.wikimedia.org/wikipedia/en/5/50/Link%C3%B6ping_University_Seal.png"
+                          # img <- readPNG(getURLContent(myurl))
+                          # g <- rasterGrob(img)
                           
                           dataint <- data.frame(residual = Residuals, fitos = Fits)
                           a <- ggplot(data = dataint, aes(x = fitos, y = residual) ) +
