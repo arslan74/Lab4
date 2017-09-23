@@ -6,13 +6,13 @@
 #' #' @export
 #' my_num_vector <- function (){
 #'   e <- exp(1)
-#'   return (c(log10(11),cos(pi/5),e^(pi/3),1173%%7 /19)) 
+#'   return (c(log10(11),cos(pi/5),e^(pi/3),1173%%7 /19))
 #' }
 
 #' @title Linear Regression
 #' @description You can have Reference Class containing some calculations by giving formula and data.
-#' @export linreg
-#' @exportClass linreg
+#' @import methods
+#' @export
 linreg <- setRefClass("linreg",
                       fields = list(),
                       methods = list())
