@@ -1,15 +1,9 @@
-Package: FahadUgurcanLab4
+Package: Lab4
 Type: Package
-Title: Linear Algebra Implementation
+Title: What the package does (short line)
 Version: 1.0
-Date: 2017-09-14
-Author: Ugurcan Fahad
-Maintainer: <fahadhameed199@gmail.com>
-Description: Lab 4 The Package includes functions Regressions coefficients. 
-License: GPL-3
-RoxygenNote: 6.0.1
-Imports: ggplot2
-Suggests: testthat,
-    knitr,
-    rmarkdown
-VignetteBuilder: knitr
+Date: 2017-09-23
+Author: Who wrote it
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: More about what it does (maybe more than one line)
+License: What license is it under?
