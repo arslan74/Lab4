@@ -1,7 +1,18 @@
-#' A package for linear regression
+#'@title Lab4: A package to make a linear regression 
+#'
+#'@description This package help you to do a linear regression with "Reference Class" 
+#'
 #' 
-#' @description This package calculates regression coefficients by using given formula and data
+#' 
+#' 
+#' @section The packages functions:
+#' \describe{
+#'   \item{linreg_v2}{The main function of the package}
+#' }
+#' 
+#' 
+#' 
+#' @name Lab4ofDOOM
 #' @docType package
-#' @name fahaadUgurcan
-#' @author Fahad Hameed and Ugurcan Lacin
+#' @author Fahad Ugurcan
 NULL
