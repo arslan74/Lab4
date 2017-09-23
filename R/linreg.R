@@ -12,7 +12,7 @@
 #' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$coef()
 #' linreg$new(Petal.Length~Sepal.Width+Sepal.Length, data=iris)$plot()
 #' @export linreg
-#' @exportClass linreg
+#' @export
 linreg <- setRefClass("linreg",
                         fields = list(formula = "formula", data = "data.frame",Coefficients = "numeric", Fits = "numeric",
                                       Residuals = "numeric", df = "numeric",
