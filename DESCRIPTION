@@ -1,14 +1,14 @@
-Package: Lab4ofDOOM
+Package: Lab4
 Type: Package
 Title: Lab4
 Version: 1.0.0
 Date: 2017-09-11
-Author: Albin Vasterlund, Eric Herwin
-Maintainer: Any issues, contact: <erihe068@student.liu.se>
-Description: Euclidian and Djukstra Algorithm
+Author: Ugurcan Lacin, Fahad Hameed
+Maintainer: Any issues, contact: <ugurcanlacin@gmail.com>
+Description: Lab4
 License: GPL-3
 Depends: R (>= 2.10)
-URL: https://github.com/vasterlund/Lab3_Albin_Eric
+URL: https://github.com/ugurcanlacin/Lab4
 LazyData: true
 RoxygenNote: 6.0.1
 Suggests: testthat, ggplot2,
