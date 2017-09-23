@@ -101,15 +101,15 @@ linreg <- setRefClass("linreg",
                             panel.grid.major.x = element_blank(),
                             panel.grid.minor.x = element_blank(),
                             axis.line = element_line(color= "#58585b", size=1),
-                            axis.text.x = element_text(color="#0C0798", size="10"),
-                            axis.text.y = element_text(color="#0C0798", size="10"),
+                            axis.text.x = element_text(color="#0C0798", size="11"),
+                            axis.text.y = element_text(color="#0C0798", size="11"),
                             axis.title.x = element_text(color="Black", size="12", face="bold.italic"),
                             axis.title.y = element_text(color="Black", size="12", face="bold.italic"),
                             axis.ticks.y = element_blank(),
                             axis.ticks.x = element_line(color = "#9D9ADC", size = 0.3),
                             plot.title = element_text(color="blue2", face="bold", size="14"),
                             legend.position="bottom", legend.title = element_blank(),
-                            legend.text = element_text(color="Black", size="10")
+                            legend.text = element_text(color="Black", size="12")
                          ) 
                          
                           dataint <- data.frame(residual = Residuals, fitos = Fits)
