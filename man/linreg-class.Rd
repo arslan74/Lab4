@@ -4,32 +4,32 @@
 \name{linreg-class}
 \alias{linreg-class}
 \alias{linreg}
-\title{Do you want to make a linear regression?}
+\title{Linear Regression}
 \description{
-This function make a "Reference Class" with class=linreg for a linjer regression
+You can have Reference Class containing some calculations by giving formula and data.
 }
 \section{Fields}{
 
 \describe{
-\item{\code{formula}}{The formula for the model}
+\item{\code{formula}}{Formula}
 
-\item{\code{data}}{A object of class data.frame}
+\item{\code{data}}{A data frame}
 }}
 
 \section{Methods}{
 
 \describe{
-\item{\code{coef()}}{Give you the coef values as a numeric vector}
+\item{\code{coef()}}{This function returns regression coefficients}
 
-\item{\code{plot()}}{Printing out two graps of residuals and standardized residuals vs. fitted values.}
+\item{\code{plot()}}{This function plots two graphs, such as Fitted values vs Residuals and Scale Location by using given formula and data in initialization.}
 
-\item{\code{pred()}}{Give you the predicted values as a numeric vector}
+\item{\code{pred()}}{This function returns fitted value.}
 
-\item{\code{print()}}{Give you a nice view of the calculation}
+\item{\code{print()}}{This function prints regression coefficients by using given formula and data in initialization.}
 
-\item{\code{resid()}}{Give you the residuals as a numeric vector}
+\item{\code{resid()}}{This function returns residuals value.}
 
-\item{\code{summary()}}{Give you a nice summary of the calculation}
+\item{\code{summary()}}{This function prints the coefficients with their standard error, t-value and p-value.}
 }}
 
 \examples{
