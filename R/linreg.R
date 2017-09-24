@@ -54,39 +54,6 @@ linreg <- setRefClass("linreg",
                           DataName<<- deparse(substitute(data))
                           
                         },
-                        print = function(){
-                          "Function Prints regression coefficients by using formula and data in initialization."
-                          cat("Call:",sep="\n")
-                          cat(paste("linreg(","formula = ",formula[2]," ",formula[1]," ",formula[3],", ","data = ",DataName,")",sep=""), sep="\n")
-                          cat(sep="\n")
-                          cat("Coefficients:")
-                          cat(sep="\n")
-                          
-                          beta<-Coefficients
-                          namn<-names(beta)
-                          names(beta)<-NULL
-                          beta<-round(beta,4)
-                          
-                          for(i in 2:length(beta)){
-                            beta[i]<-format(beta[i], width=max(nchar(beta[i]),nchar(namn[i])),justify = "right")
-                          }
-                          
-                          beta[1]<-format(beta[1], width=max(nchar(beta[1]),nchar(namn[1]),nchar("Coefficients")),justify = "right")
-                          namn[1]<-format(namn[1], width=max(nchar(beta[1]),nchar(namn[1]),nchar("Coefficients")),justify = "right")
-                          
-                          beta[1]<-paste(beta[1],"  ",sep="")
-                          namn[1]<-paste(namn[1],"  ",sep="")
-                          
-                          beta[2]<-paste(beta[2]," ",sep="")
-                          namn[2]<-paste(namn[2]," ",sep="")
-                          
-                          cat(" ")
-                          cat(namn)
-                          cat(" ")
-                          cat(sep="\n")
-                          cat(beta)
-                          
-                        },
                         plot = function(){
                           "This function plots two graphs, such as Fitted values vs Residuals and Scale Location by using given formula and data in initialization."
                            
