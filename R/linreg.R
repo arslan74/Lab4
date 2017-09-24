@@ -168,7 +168,10 @@ linreg <- setRefClass("linreg",
                           names(beta)<-NULL
                           beta<-round(beta,4)
                           
-                          
+                          for(i in 1:length(beta)){
+                            beta[i]<-format(beta[i], width=max(nchar(beta[i]),nchar(namn[i])),justify = c("right"))
+                            namn[i]<-format(namn[i], width=max(nchar(beta[i]),nchar(namn[i])),justify = c("right"))
+                          }
                           
                           Variable<-as.character(names(Coefficients))
                           Estimate<-round(Coefficients,3)
