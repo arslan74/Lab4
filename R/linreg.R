@@ -95,7 +95,7 @@ linreg <- setRefClass("linreg",
                          linkoping_theme <- 
                            theme(
                             plot.margin = unit(c(1.2,1.2,1.2,1.2), "cm"),
-                            panel.background = element_rect(fill="#BCEDF0"),
+                            panel.background = element_rect(fill="#ccf0fa"),
                             panel.grid.major.y = element_blank(),
                             panel.grid.minor.y = element_blank(),
                             panel.grid.major.x = element_blank(),
@@ -115,7 +115,7 @@ linreg <- setRefClass("linreg",
                           dataint <- data.frame(residual = Residuals, fitos = Fits)
                           a <- ggplot(data = dataint, aes(x = fitos, y = residual) ) +
                             geom_point() + labs(x = "Fitted values", y = "Residuals") +
-                            geom_smooth(method="loess", se = FALSE, color = "red") +
+                            geom_smooth(method="loess", se = FALSE, color = "#0CC7D3") +
                             geom_hline(yintercept = 0) + theme_bw() + ggtitle("Residuals vs Fitted") +
                             linkoping_theme 
                             #annotation_custom(g, xmin=2.5, xmax=4.5, ymin=-Inf, ymax=Inf)    
@@ -127,7 +127,7 @@ linreg <- setRefClass("linreg",
                             dataint2 <- data.frame(residual = sqrt(abs(Residuals)), fitos = Fits)
                             b <- ggplot(data = dataint2, aes(x = fitos, y = residual) ) +
                               geom_point() + labs(x = "Fitted values", y = expression(sqrt(abs("Standardized residuals")))) +
-                              geom_smooth(method="loess", se = FALSE, color = "red") +
+                              geom_smooth(method="loess", se = FALSE, color = "#0CC7D3") +
                               geom_hline(yintercept = 0) + theme_bw() + ggtitle("Scale Location") +
                               linkoping_theme 
                           #   annotation_custom(g, xmin=2.5, xmax=4.5, ymin=-Inf, ymax=Inf) +
